@@ -11,6 +11,14 @@
     <title>Sala - Rezerwacja - Teatr Sztampa</title>
 </head>
 <body>
-Czy ja działam?
+<h2>
+    Czy ja działam? :)<br>
+    <br>
+    Test znaków diakrytycznych:<br>
+    <ul>
+        ą, ć, ę, ł, ń, ó, ś<br>
+        Ą, Ć, Ę, Ł, Ń, Ó, Ś<br>
+    </ul>
+</h2>
 </body>
 </html>
