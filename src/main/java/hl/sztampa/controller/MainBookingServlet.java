@@ -26,7 +26,7 @@ public class MainBookingServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        session.setAttribute("seat", req.getParameter("value"));
+        session.setAttribute("seat", req.getParameter("seat"));
 
         req.setAttribute("taken", session.getAttribute("seat"));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/view/view-audience.jsp");

@@ -18,6 +18,10 @@
 
     <title>Sala - Rezerwacja - Teatr Sztampa</title>
 
+    <!-- odniesienie do styli css zapisuejmy tak:
+    <link rel="stylesheet" href="styles/style.css">
+    -->
+
     <style>
         table, th, td {
             border: 1px solid black;
@@ -39,59 +43,85 @@
     </style>
 </head>
 <body>
-<div>
+<!-- headerowi można nadać id="bold" i jeśli w style.css będzie odpowiednie formatowanie, to odniesie do tej sekcji -->
+<header>
     <h1>Podgląd sali do dokonania rezerwacji</h1>
-</div>
-<div>
-    <table>
-        <tr>
-            <c:forEach var="i" begin="1" end="11">
-                <th>
-                    <form action="/booking" method="post">
-                        <input type="hidden" name="value" value="<c:out value="${i}"/>"/>
-                        <button type="submit">Miejsce: <c:out value = "${i}"/> </button>
-                    </form>
+</header>
+<!-- w navi mogą być przyciski do innych stron -->
+<nav></nav>
 
-                </th>
-            </c:forEach>
-        </tr>
-        <tr>
-            <th>21</th>
-            <th>22</th>
-            <th>23</th>
-            <th>24</th>
-            <th>25</th>
-            <th>26</th>
-            <th>27</th>
-            <th>28</th>
-            <th>29</th>
-            <th>210</th>
-            <th>211</th>
-        </tr>
-        <tr>
-            <th>31</th>
-            <th>33</th>
-            <th>33</th>
-            <th>34</th>
-            <th>35</th>
-            <th>36</th>
-            <th>37</th>
-            <th>38</th>
-            <th>39</th>
-            <th>310</th>
-            <th>311</th>
-        </tr>
-    </table>
-</div>
-<br><br>
-<div>
-    Test znaków diakrytycznych:<br>
-    <ul>
-        ą, ć, ę, ł, ń, ó, ś<br>
-        Ą, Ć, Ę, Ł, Ń, Ó, Ś<br>
-    </ul>
-</div>
+<section>
+    <article>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="11"><p align="middle">Dostępne miejsca</p></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <c:forEach var="i" begin="1" end="11">
+                        <td>
+                            <form action="/booking" method="post">
+                                <!-- dwie poniższe linie pakujemy w ifa różnicującego, czy miejsce jest kliknięte-zajęte, czy jeszcze nie -->
+                                <input type="hidden" name="seat" value="<c:out value="${i}"/>"/>
+                                <button type="submit">Miejsce: <c:out value = "${i}"/> </button>
+                                <!-- poniżej dwie linie do obsługi miejsca po jego dodaniu do puli zajętych, kolorowanie przez .css w oparciu o nazwę klasy
+                                <input type="hidden" name="seat_cancel" value="${i}"/>"/>
+                                <button type="submit"><p class="seat_taken">X</p></button>
+                                -->
+                            </form>
+                        </td>
+                    </c:forEach>
+                </tr>
+                <tr>
+                    <th>21</th>
+                    <th>22</th>
+                    <th>23</th>
+                    <th>24</th>
+                    <th>25</th>
+                    <th>26</th>
+                    <th>27</th>
+                    <th>28</th>
+                    <th>29</th>
+                    <th>210</th>
+                    <th>211</th>
+                </tr>
+                <tr>
+                    <th>31</th>
+                    <th>33</th>
+                    <th>33</th>
+                    <th>34</th>
+                    <th>35</th>
+                    <th>36</th>
+                    <th>37</th>
+                    <th>38</th>
+                    <th>39</th>
+                    <th>310</th>
+                    <th>311</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </article>
+</section>
+<!-- może być też sekcja "aside" dla bocznej sekcji - "Defines content aside from the page content" -->
+<aside></aside>
 <br>
+
 Zajęte krzesła: <% System.out.println(request.getSession().getAttribute("seat")); %>
+
+<br>
+<br>
+<footer>
+    <div>
+        Test znaków diakrytycznych:<br>
+        <ul>
+            ą, ć, ę, ł, ń, ó, ś<br>
+            Ą, Ć, Ę, Ł, Ń, Ó, Ś<br>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>
