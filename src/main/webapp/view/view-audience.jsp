@@ -63,6 +63,8 @@
                 <tr>
                     <c:forEach var="i" begin="1" end="11">
                         <td>
+                            <!-- w tym ifie ma być kolorowanie tła komórki; czy to nie powinno być w znaczniku <td>? -->
+                            <c:if test=""
                             <form action="/booking" method="post">
                                 <!-- dwie poniższe linie pakujemy w ifa różnicującego, czy miejsce jest kliknięte-zajęte, czy jeszcze nie -->
                                 <input type="hidden" name="seat" value="<c:out value="${i}"/>"/>
