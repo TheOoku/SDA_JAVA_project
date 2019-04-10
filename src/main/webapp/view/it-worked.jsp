@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Set" %>
 <%--
   Created by IntelliJ IDEA.
   User: Ooku
@@ -12,5 +14,21 @@
 </head>
 <body>
 <h2>It worked! :)</h2>
+<div>
+    <p>
+        <%
+            // v. - na ArrayLiście
+            List<String> seatsList = (List<String>) request.getSession().getAttribute("cart");
+            for (int i = 0; i < seatsList.size(); i++) {
+                System.out.println("Miejsce: " + seatsList.get(i));
+            }
+            /*// v. - na setcie
+            Set<String> seatsSet = (Set<String>) request.getSession().getAttribute("cart");
+            for (String s : seatsSet) {
+                System.out.println("Miejsce: " + s);
+            }*/
+        %>
+    </p>
+</div>
 </body>
 </html>

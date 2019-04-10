@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Ooku
   Date: 2019-04-06
@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <html>
 <head>
@@ -15,6 +17,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="<c:url value="/resources/theme/style.css" />">
 
     <title>Sala - Rezerwacja - Teatr Sztampa</title>
 
@@ -48,11 +51,15 @@
     <h1>Podgląd sali do dokonania rezerwacji</h1>
 </header>
 <!-- w navi mogą być przyciski do innych stron -->
-<nav></nav>
+<nav>
+    <div>
+        <p><a href="/view/it-worked.jsp">Podgląd sesji</a></p>
+    </div>
+</nav>
 
 <section>
     <article>
-        <div>
+        <div align="middle">
             <table>
                 <thead>
                 <tr>
@@ -64,7 +71,7 @@
                     <c:forEach var="i" begin="1" end="11">
                         <td>
                             <!-- w tym ifie ma być kolorowanie tła komórki; czy to nie powinno być w znaczniku <td>? -->
-                            <c:if test=""
+                            <c:if test=""></c:if>
                             <form action="/booking" method="post">
                                 <!-- dwie poniższe linie pakujemy w ifa różnicującego, czy miejsce jest kliknięte-zajęte, czy jeszcze nie -->
                                 <input type="hidden" name="seat" value="<c:out value="${i}"/>"/>
@@ -78,20 +85,23 @@
                     </c:forEach>
                 </tr>
                 <tr>
-                    <th>21</th>
-                    <th>22</th>
-                    <th>23</th>
-                    <th>24</th>
-                    <th>25</th>
-                    <th>26</th>
-                    <th>27</th>
-                    <th>28</th>
-                    <th>29</th>
-                    <th>210</th>
-                    <th>211</th>
+                    <c:forEach items="${view_audience}" var="seat">
+                        <td>${seat.id}</td>
+                    </c:forEach>
                 </tr>
                 <tr>
-                    <th>31</th>
+                    <td>
+                        <% List<String> seatsList = (List<String>) request.getSession().getAttribute("cart");
+                            if (seatsList.contains("31")){ %>
+                        <p background-color: blue>Zajęte</p>
+
+                        <% } else {%>
+                        <form action="/booking" method="post">
+                            <input type="hidden" name="seat" value="31"/>
+                            <button type="submit">Miejsce: 31</button>
+                        </form>
+                        <% } %>
+                    </td>
                     <th>33</th>
                     <th>33</th>
                     <th>34</th>
@@ -113,6 +123,8 @@
 <br>
 
 Zajęte krzesła: <% System.out.println(request.getSession().getAttribute("seat")); %>
+<!-- jak działa <display>? -->
+<display:table name="${sessionScope.cart}">
 
 <br>
 <br>

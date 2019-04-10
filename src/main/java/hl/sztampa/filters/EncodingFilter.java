@@ -1,4 +1,4 @@
-package hl.sztampa.filers;
+package hl.sztampa.filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
